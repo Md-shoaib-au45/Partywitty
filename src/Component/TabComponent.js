@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -23,17 +22,105 @@ function CustomTabPanel(props) {
   );
 }
 
-CustomTabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
+function ReservationCard() {
+  const [selectedDay, setSelectedDay] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
+  const [selectedPeople, setSelectedPeople] = useState('');
+  const [kidsOption, setKidsOption] = useState('');
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+  const handleDayChange = (day) => {
+    setSelectedDay(day);
   };
+
+  const handleTimeChange = (time) => {
+    setSelectedTime(time);
+  };
+
+  const handlePeopleChange = (people) => {
+    setSelectedPeople(people);
+  };
+
+  const handleKidsOptionChange = (option) => {
+    setKidsOption(option);
+  };
+
+  return (
+    <div style={{ width: '400px', height: '500px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+      <h2>Reserve Your Table</h2>
+
+      <div>
+        <p>What day:</p>
+        <div>
+          <label>
+            <input type="checkbox" onChange={() => handleDayChange('today')} checked={selectedDay === 'today'} />
+            Today
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handleDayChange('tomorrow')} checked={selectedDay === 'tomorrow'} />
+            Tomorrow
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handleDayChange('saturday')} checked={selectedDay === 'saturday'} />
+            Saturday
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <p>What time:</p>
+        <div>
+          <label>
+            <input type="checkbox" onChange={() => handleTimeChange('3:00')} checked={selectedTime === '3:00'} />
+            3:00
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handleTimeChange('4:00')} checked={selectedTime === '4:00'} />
+            4:00
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handleTimeChange('5:00')} checked={selectedTime === '5:00'} />
+            5:00
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <p>How many people:</p>
+        <div>
+          <label>
+            <input type="checkbox" onChange={() => handlePeopleChange('1')} checked={selectedPeople === '1'} />
+            1
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handlePeopleChange('2')} checked={selectedPeople === '2'} />
+            2
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handlePeopleChange('3')} checked={selectedPeople === '3'} />
+            3
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handlePeopleChange('4')} checked={selectedPeople === '4'} />
+            4
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <p>Kids:</p>
+        <div>
+          <label>
+            <input type="checkbox" onChange={() => handleKidsOptionChange('yes')} checked={kidsOption === 'yes'} />
+            Yes
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handleKidsOptionChange('no')} checked={kidsOption === 'no'} />
+            No
+          </label>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function CombinedTabs() {
@@ -44,20 +131,18 @@ export default function CombinedTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="menu" {...a11yProps(0)} />
-          <Tab label="offer" {...a11yProps(1)} />
-          <Tab label="event" {...a11yProps(2)} />
-          <Tab label="review" {...a11yProps(3)} />
-        </Tabs>
-      </Box>
+    <Box>
+      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
+        <Tab label="Menu" />
+        <Tab label="Offer" />
+        <Tab label="Event" />
+        <Tab label="Review" />
+      </Tabs>
 
       <CustomTabPanel value={value} index={0}>
-      <div>
-            <h2>Offers</h2>
-            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+        {/* Content for "Menu" tab */}
+        <h2>Menu Content</h2>
+        <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
               <p>20% OFF</p>
             </div>
             <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
@@ -66,14 +151,12 @@ export default function CombinedTabs() {
             <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
               <p>50% OFF - Use Carrot</p>
             </div>
-          </div>        <h2>Menu Content</h2>
-        {/* Add your Menu content here */}
-      </CustomTabPanel>
+               </CustomTabPanel>
 
       <CustomTabPanel value={value} index={1}>
-      <div>
-            <h2>Offers</h2>
-            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+        {/* Content for "Offer" tab */}
+        <h2>Offer Content</h2>
+        <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
               <p>20% OFF</p>
             </div>
             <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
@@ -82,14 +165,12 @@ export default function CombinedTabs() {
             <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
               <p>50% OFF - Use Carrot</p>
             </div>
-          </div>        <h2>Offer Content</h2>
-        {/* Add your Offer content here */}
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={2}>
-      <div>
-            <h2>Offers</h2>
-            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+        {/* Content for "Event" tab */}
+        <h2>Event Content</h2>
+        <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
               <p>20% OFF</p>
             </div>
             <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
@@ -98,21 +179,17 @@ export default function CombinedTabs() {
             <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
               <p>50% OFF - Use Carrot</p>
             </div>
-          </div>        <h2>Event Content</h2>
-        {/* Add your Event content here */}
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={3}>
-        {/* Review Content */}
+        {/* Content for "Review" tab */}
         <h2>Review Content</h2>
         <div style={{ borderBottom: '1px solid #ccc', marginBottom: '15px' }}>
-          {/* First card with star rating */}
           <div className="review-card">
             <p>Rating: ⭐⭐⭐⭐⭐</p>
           </div>
         </div>
 
-        {/* Second card with people icon, comment, and name */}
         <div style={{ borderBottom: '1px solid #ccc', marginBottom: '15px' }}>
           <div className="review-card">
             <div>
@@ -125,10 +202,8 @@ export default function CombinedTabs() {
           </div>
         </div>
 
-        {/* Write review button */}
         <button style={{ marginBottom: '15px' }}>Write a Review</button>
 
-        {/* Third card with ratings for various aspects */}
         <div className="review-card">
           <p>Food: ⭐⭐⭐⭐</p>
           <p>Ambience: ⭐⭐⭐⭐⭐</p>
@@ -137,6 +212,9 @@ export default function CombinedTabs() {
           <p>Service: ⭐⭐⭐⭐⭐</p>
         </div>
       </CustomTabPanel>
+
+      {/* Right-side Reservation Card */}
+      <ReservationCard />
     </Box>
   );
 }
