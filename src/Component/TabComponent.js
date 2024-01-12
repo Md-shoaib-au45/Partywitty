@@ -16,11 +16,9 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      <Box sx={{ p: 3 }}>
+        <Typography>{children}</Typography>
+      </Box>
     </div>
   );
 }
@@ -57,39 +55,87 @@ export default function CombinedTabs() {
       </Box>
 
       <CustomTabPanel value={value} index={0}>
-        {/* Menu Content */}
-        <h2>Menu Content</h2>
-        <div className="event-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
-              <p>Event 1</p>
+      <div>
+            <h2>Offers</h2>
+            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+              <p>20% OFF</p>
             </div>
-            <div className="event-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
-              <p>Event 2</p>
+            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+              <p>50% OFF</p>
             </div>
-            <div className="event-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
-              <p>Event 3</p>
+            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+              <p>50% OFF - Use Carrot</p>
             </div>
+          </div>        <h2>Menu Content</h2>
+        {/* Add your Menu content here */}
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={1}>
-        {/* Offer Content */}
-        <h2>Offer Content</h2>
-        <div className="event-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
-              <p>Event 1</p>
+      <div>
+            <h2>Offers</h2>
+            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+              <p>20% OFF</p>
             </div>
-            <div className="event-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
-              <p>Event 2</p>
-            </div>      </CustomTabPanel>
+            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+              <p>50% OFF</p>
+            </div>
+            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+              <p>50% OFF - Use Carrot</p>
+            </div>
+          </div>        <h2>Offer Content</h2>
+        {/* Add your Offer content here */}
+      </CustomTabPanel>
 
       <CustomTabPanel value={value} index={2}>
-        {/* Event Content */}
-        <h2>Event Content</h2>
+      <div>
+            <h2>Offers</h2>
+            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+              <p>20% OFF</p>
+            </div>
+            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+              <p>50% OFF</p>
+            </div>
+            <div className="offer-card" style={{ width: '300px', height: '300px', border: '1px solid #ccc', borderRadius: '10px', overflow: 'hidden', margin: '10px' }}>
+              <p>50% OFF - Use Carrot</p>
+            </div>
+          </div>        <h2>Event Content</h2>
         {/* Add your Event content here */}
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={3}>
         {/* Review Content */}
         <h2>Review Content</h2>
-        {/* Add your Review content here */}
+        <div style={{ borderBottom: '1px solid #ccc', marginBottom: '15px' }}>
+          {/* First card with star rating */}
+          <div className="review-card">
+            <p>Rating: ⭐⭐⭐⭐⭐</p>
+          </div>
+        </div>
+
+        {/* Second card with people icon, comment, and name */}
+        <div style={{ borderBottom: '1px solid #ccc', marginBottom: '15px' }}>
+          <div className="review-card">
+            <div>
+              <img src="people-icon.png" alt="People Icon" style={{ width: '30px', height: '30px', marginRight: '10px' }} />
+            </div>
+            <div>
+              <p>John Doe</p>
+              <p>Great experience! Will come again.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Write review button */}
+        <button style={{ marginBottom: '15px' }}>Write a Review</button>
+
+        {/* Third card with ratings for various aspects */}
+        <div className="review-card">
+          <p>Food: ⭐⭐⭐⭐</p>
+          <p>Ambience: ⭐⭐⭐⭐⭐</p>
+          <p>Hygiene: ⭐⭐⭐⭐⭐</p>
+          <p>Pricing: ⭐⭐⭐⭐</p>
+          <p>Service: ⭐⭐⭐⭐⭐</p>
+        </div>
       </CustomTabPanel>
     </Box>
   );
